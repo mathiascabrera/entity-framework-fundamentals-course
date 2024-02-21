@@ -237,3 +237,43 @@ https://learn.microsoft.com/es-es/ef/core/what-is-new/
 
 
 ---------------------------------------------------------------------------
+
+
+
+
+
+--------------------  Creating a .NET project with Entity Framework   --------------------
+
+We are now ready to analyze the project we are going to work on during the course.
+
+In this project we will have the possibility of creating different tasks.
+In turn, we can assign each of these “Tasks” a “Category”.
+
+We will use the .NET "Minimal API" template.
+This template allows us to create APIs without having many configuration files or many components.
+
+From the terminal we execute 'dotnet new web' to create the template.
+
+We must download the necessary libraries to work with Entity Framework.
+To do this we go to the NUGET site and search for "EntityFrameworkCore".
+We are going to install it using the command that ".NET CLI" provides us.
+It is not recommended to install the "preview" version.
+We must paste the copied command into the Visual Studio terminal.
+
+Once this command is executed, the library will have been installed.
+To verify we must open the file with the extension "csproj".
+
+
+We will install other additional packages using the CLI.
+
+We search in NUGET for "EntityFrameworkCore.InMemory".
+This package will help us create an in-memory database and be able to test the model we are creating within .NET using Classes and Attributes.
+
+Finally we search for "EntityFrameworkCore.SqlServer".
+This library will allow us to connect to the SQL Server database engine.
+If we want to work with Postgres we must search for “EntityFrameworkCore.PostgreSQL”.
+
+In the next class we will create the “Task” and “Category” models that will be the bases for creating our tables in the database.
+
+
+---------------------------------------------------------------------------------------------
