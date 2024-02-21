@@ -1,0 +1,239 @@
+Discover Entity Framework, a modern ORM designed for .Net with a project to add to your portfolio. Connect to a database and create the models using the Fluent API.
+
+
+connection to database and creation of models with Entity Framework.
+
+Create "Task" and "Categories" models with Entity Framework and connect your .NET project to a real database. Learn how to use the minimal API template.
+
+
+
+" INTRODUCTION "
+
+
+
+--------------------  Presentation  --------------------
+
+Let's learn how these components work in .NET that will allow connection to the database.
+
+We will begin to analyze the different concepts that Entity Framework uses for its operation.
+
+Then we will see two ways in which we can use Entity Framework either with Attributes or Fluen API.
+
+To make this configuration and learn how Entity Framework works, we are going to create two models. A Category model and another Task model. Both will be related, allowing us to analyze how Entity Framework creates relationships between different tables when we make this relationship in models and in Entity Framework configuration.
+
+Later we will connect this configuration that we created to a real database and then finally we will learn how we can perform the different actions with the data (get, create, update and delete data), using Entity Framework.
+
+
+https://designer.mocky.io/
+https://insomnia.rest/
+
+--------------------------------------------------------
+
+
+
+
+
+--------------------  Database Connection  --------------------
+
+We will see how we can connect an application to a database and the different types of mechanisms that exist in .NET to achieve this.
+
+Normally in an application we will have a “Client” component that will be used by the “End User” which we call “Frontend” in the case of web applications or in an App that runs on a cell phone. And this Client is going to have to connect to a “Backend” that will finally be running on a Server and is the one that would connect to the Database.
+
+Why is a process normally done this way?
+The reason is that the Client should not connect directly to the Database, because in the end to make this connection we will need different components, different libraries and also secrets, that is, passwords and others that will allow us to connect to the database. And this data will finally be in the Client and this end user will be able to access it. So normally a user who doesn't know much about computers won't know what's going on underneath; However, any user with even minimal knowledge of technology will be able to see inside the client, inspect the code, and figure it out. that there is data to access. the database and make any changes that have not been requested and be able to bypass all the security, authentication and authorization problems that we have in our applications. For this reason, the connection to the DB must be made from the Backend.
+
+The Backend runs within an external Server to which the Client does not have access and in order to access the Backend they will have to use the Frontend which will have a large part of the administration of roles and permissions and so on. This way we have a secure channel to save and update data in our application.
+
+Generally this is the Architecture that we must create in a real Application.
+In this course we are going to focus on the Backend part.
+
+Entity Framework is responsible for simplifying how we build the Backend to be able to connect to the DB.
+
+
+There are different types of components that we can use to connect to the DB:
+
+In Windows, the ODBS and OLEDB components are normally used. These are drivers that we install on our machines and then through a connection “string” we can connect to a Database and obtain the information we need.
+
+
+Microsoft created a specific element to connect to its database engine which is "SQL Server", and also created a specific one for "Azure SQL", this connection with Azure is a very advanced connection, much more secure that even includes certificates , includes the IP of the computer we are on, and in this way a more secure protocol is generated.
+
+
+In the end all these types of connections are the same. It is having a connection string that we have to configure to then be able to access the server where the DB is located and manipulate the data using SQL commands.
+
+In this course "SQL Server" will be used.
+
+
+Within .NET we have a component that allows us to make all these connections to the DB that we just saw. This component is known as ADO.NET.
+
+ADO.NET is a set of different libraries that allow us to access databases and also data services.
+Basically we can not only access a database like SQL Server but we can also access slightly simpler databases like ACCES or even EXCEL files.
+
+
+ADO.NET is a library that has been evolving year after year and has more and more options to connect us and carry out that interaction between our Backend and the Database.
+
+
+We can see in the image of “ADO.NET Operation” that no matter the provider or the type of connection we are using, ADO.NET is in charge of managing that connection, bringing the data from that data source that we are using and that we can use inside our .NET application.
+
+It doesn't matter the type of application, it can be a web or desktop application or a simple library, so it doesn't matter what we are doing with .NET since in the end everything has to go through ADO.NET in order to make the connection.
+
+We can see at the bottom of the image the different data sources: DB SQL as well as NOSQL, REST services, we can have a simple EXCEL file and with ADO.NET we can connect to this file and get the data.
+
+
+
+In the end, when we want to use the data obtained by ADO.NET, we can use different means to process it: We have the "DataSets" (they fill in all the information that we take from the DB to a generic component that we will then consult row by row and column by column ), we also have "LINQ to SQL" (it is a component that is not used much anymore), and finally the most popular means that exists in .NET so far, that is, connecting to an "Entity Framework".
+
+
+In the next class we will learn the most important concept that we are going to learn since it is the basis of Entity Framework: ORM
+
+
+--------------------------------------------------------------------
+
+
+
+
+
+--------------------  What is an ORM in programming?  --------------------
+
+We learn a concept that is the basis of the operation of the Entity Framework known as ORM.
+
+
+" CHALLENGES WHEN CONNECT ABASE "
+
+- Scheme maintenance:
+
+One of the most important challenges when working with a Database is maintaining the schema that we have created and that we are constantly modifying.
+
+We must maintain traceability of all the modifications we make. For example when adding new columns or when we change the data type of a column. Maintaining traceability of this data becomes a bit complex.
+
+Normally, we must be creating SQL Scripts that are responsible for making these changes and somehow perform all the traceability of these changes manually. For example, it could be creating a repository on GitHub and naming each of the scripts that we have created and maintaining the history of all those scripts.
+
+This is one way to do it but it is complex and additional that we must do and is not directly related to the Backend. However, we must do it and have it available to be able to understand the changes that have been made over time and if at some point we must return to a change, make it possible in a simple way.
+
+
+- Creating SQL queries :
+
+SQL is another programming language like any other, so a Backend programmer will not only have to learn JavaScript or C# but will also have to learn this SQL language to be able to communicate with the database.
+This is really not a problem, since after learning SQL we can perform this communication. That is, data extraction can be done using this language. However, for new developers it is a challenge as they have to learn an additional language to be able to perform this communication.
+
+
+- Data transformation to be used in the Backend :
+
+Another important challenge is to transform the data provided by the database to be able to use it in the Backend language that we are using.
+Typically, in C# and Java, for example, we use a lot of object-oriented programming and we also use strongly typed data.
+The data we handle within a programming language is not the same as the data supported by the databases, so we must perform a transformation so that this data matches and we can use it.
+
+
+- Ensure security when handling data :
+
+Another challenge is security.
+
+There is a well-known type of database hacking known as “SQL INJECTION”.
+Basically, malicious SQL scripts are sent to the server from a client application and executed maliciously to make some unexpected change or delete data from the database.
+
+In order to control this type of situations we can use different libraries and database engines, since they have controls for this. However, ORMs are the most important components to avoid this since internally they have quite advanced control for this type of situation. So due to the security issue we are also going to have several challenges and thanks to the ORMs we will be able to control many of these difficulties.
+
+
+
+What is ORM? :
+
+Its acronym stands for Object Relational Mapping.
+
+The concept of Mapping is well known in the world of software development.
+When we talk about mapping, basically what we do is look for the representation of one component in another.
+
+It is simply a connection between a component of one type with another component of a completely different type.
+
+So, basically the ORM allows us to convert components that come from the Database to a much friendlier type, much more used within our code.
+
+When mapping, there is basically a relationship between one and the other. In turn, each change we make within these components, from our code, will be reflected in the database.
+
+
+ORMs are based on object-oriented programming to perform this mapping that we mentioned above.
+
+We use the concept of Classes and Objects to be able to communicate with the columns, tables and data of the Database.
+
+So basically we will make this representation that exists of a table in the Database using a Class and each of the attributes and properties of this Class will represent a column within the Database.
+
+So this is what mapping consists of, it is that representation of code components or pieces of code that we normally use in our daily lives that are much easier to understand and work within programming languages ​​to be able to easily communicate with the database. data.
+
+
+We must also understand that there are different functions or query languages ​​that exist within the code in order to replace SQL.
+In the case of Entity Framework, for example, different extension functions are used and also an important component called LINQ within .NET to be able to replace what the SQL language would normally do.
+
+
+There are multiple ORMs, it is a concept well known to many programmers regardless of the programming language. This programming language must be object-oriented.
+
+Some of them can be :
+
+- Hibernet.
+It is one of the most important ORMs in the world and is used with the JAVA programming language.
+
+- Dapper.
+It is a fairly well-known ORM within .NET.
+Its advantage over Entity Framework is that it is completely OpenSource that is supported by the community and also has some very simple things when it comes to implementation.
+However, when we have slightly more advanced and complex examples within our application, the app may fall short in some aspects to be able to achieve what we want to implement and it may be a bit complex to do so.
+
+- NHibernate.
+A version for .NET.
+It is exactly the same as Hibernet for JAVA, but in this case for the C# and .NET language.
+
+- Django ORM.
+Quite popular ORM for Python, however, Python has several other ORMs.
+
+
+All these ORMs have the same principles for performing the mapping that we have mentioned, however, the configurations and functions for performing the connections are different.
+
+
+More information about SQL injection:
+
+https://www.w3schools.com/sql/sql_injection.asp
+
+
+To understand how a SQL injection attack works and how to protect yourself, do this exercise:
+https://www.hacksplaining.com/exercises/sql-injection
+
+
+---------------------------------------------------------------------------
+
+
+
+
+
+--------------------  Introduction to Entity Framework.  --------------------
+
+Entity Framework is an open source ORM for .NET.
+This means that it uses this mapping idea we talked about earlier from a database to C# OR Visual Basic or F# code.
+
+Entity Framework uses the ADO.NET library to make the entire connection from .NET to the database.
+We don't have to do any configuration as Entity Framework is configured internally. This allows us to have compatibility with many databases and also have a fairly stable and fast connection with the different databases.
+
+
+Just as there are two versions of .NET: .NET Framework and .NET Core, there are also two versions of Entity Framework: Entity Framework and Entity Framework Core.
+
+However, lately the word Core has been dropped as all new applications use .NET or the latest version of .NET.
+
+Existen algunas diferencias entre una versión del framework y otra.
+
+
+What are the advantages of using Entity Framework?
+
+- We don't have to "map" every piece of data we get from the database to C# code.
+By avoiding this we are saving significant time in the implementation and execution of the application.
+
+- It allows us to manage a single repository for Backend and database.
+In this repository we can add all the changes we are making to the database and all the components we will need to connect to the database.
+We don't have to go directly to the database to make changes or create components within the database.
+
+- With Enity Framework we improve security, we practically do not have to do anything and we will be sure that Entity Framework will carry out very good security management.
+
+- It is much friendlier to work with Entity Framework than to work with a direct component like ADO.NET, SQL language and connection to the database.
+With Entity Framework we only handle the language we are using, in this case C#, and from this language we solve any problem with the database or make any modifications to the database.
+
+- It allows us to control the history of database changes in a very simple way.
+Databases frequently need new columns and tables and we must control all changes, that is, have the history that is being developed so that we can return at some point if necessary.
+Entity Framework offers us a functionality called “MIGRATIONS”, which we will see later and we will be able to understand how we can do this in a very easy way without having to complicate our lives using “SQL scripts” and “versioning”. And additionally a repository to control the history of changes.
+
+https://learn.microsoft.com/es-es/ef/core/what-is-new/
+
+
+---------------------------------------------------------------------------
