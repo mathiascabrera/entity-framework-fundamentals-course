@@ -277,3 +277,19 @@ In the next class we will create the “Task” and “Category” models that w
 
 
 ---------------------------------------------------------------------------------------------
+
+
+" INITIALIZATION WITH ENITY FRAMEWORK "
+
+
+--------------------  Model Creation   --------------------
+
+In this class we are going to create the Models and Classes that will end up being Tables in the Database.
+
+We create a new folder “Models” to store our Models.
+Inside this folder we create our two models: the Category class and the Task class.
+In each of these classes we define each of the attributes or columns of each Table in the database.
+
+In the next class we are going to configure Entity Framework to connect to the database.
+
+-----------------------------------------------------------
