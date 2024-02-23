@@ -293,3 +293,44 @@ In each of these classes we define each of the attributes or columns of each Tab
 In the next class we are going to configure Entity Framework to connect to the database.
 
 -----------------------------------------------------------
+
+
+
+
+
+--------------------  Entity Framework Configuration   --------------------
+
+We have already created the Models, which are the bases of the Database Tables.
+
+In this class we will learn how to configure Entity Framework to establish relationships.
+
+Normally we must create a "Context" where all the relationships of the "Models" will be stored in order to transform them into Collections that will be represented in the database.
+
+We could create a folder for the Context, but since it is not a large project we directly create a Class.
+
+Normally the name of the Context Class is that it has the name of the application or the name of the business to which we are connecting at the database level and at the end the word “Context”. For example: TasksContext.cs
+
+The Context class must inherit from the DbContext class. DbContext has all the components our class needs to create the database configuration.
+
+
+
+
+Context: It is where all the relationships of the models we have will go to transform them into collections that will be represented within the database.
+
+https://learn.microsoft.com/es-es/ef/ef6/fundamentals/working-with-dbcontext#defining-a-dbcontext-derived-class
+
+
+DBSet: It is a set or assignment of data from the model that we have previously created, basically this will represent what a table would be within the context of the entity framework.
+
+A DbSet represents the collection of all entities in the context, or queryable from the database, of a given type. DbSet objects are created from DbContext using the DbContext method. place. Microsoft offers us more information about this class at the following link: https://learn.microsoft.com/es-es/dotnet/api/system.data.entity.dbset-1?view=entity-framework-6.2.0
+
+
+---------------------------------------------------------------------------
+
+
+Extensions :
+
+https://marketplace.visualstudio.com/items?itemName=kreativ-software.csharpextensions
+
+https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp
+
