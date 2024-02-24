@@ -363,6 +363,30 @@ https://stackoverflow.com/questions/5446316/code-first-vs-model-database-first
 ------------------------------------------------------------------------------
 
 
+
+
+
+--------------------  Using in-memory database   --------------------
+
+With what we have done so far we are ready to connect to a real database. However, in this class we will first connect to an in-memory database.
+We are going to do this to verify that everything we implement works correctly.
+
+Entity Framework is capable of connecting to a database and creating a schema or tables.
+
+Now we go to VSCode to configure the in-memory database. To do this we open the file "Program.cs" and before that the "var app=builder.Build();" we must perform the configuration. That is, we need to configure it before the application is created and starts listening to requests.
+
+
+In the next class we will connect to a real database.
+
+lambda:
+https://learn.microsoft.com/es-es/dotnet/csharp/language-reference/operators/lambda-expressions
+
+hoppscotch:
+https://hoppscotch.io/
+
+
+---------------------------------------------------------------------------
+
 Extensions :
 
 https://marketplace.visualstudio.com/items?itemName=kreativ-software.csharpextensions
