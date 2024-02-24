@@ -328,9 +328,43 @@ A DbSet represents the collection of all entities in the context, or queryable f
 ---------------------------------------------------------------------------
 
 
+
+
+
+--------------------  Model mapping using attributes   --------------------
+
+In the previous class we have configured Entity Framework, now we can create the database. However, there are attributes or better known as “data annotations” within .NET. Using them helps us configure the different properties of the Models in a more strict and specific way. These attributes will become columns in the database.
+
+
+Let's start with the Category model.
+Entity Framework automatically detects the property or attribute that corresponds to the ID. This is based on two aspects: the first is that the property name ends in Id and the other aspect is that the property name is the same as the Model or class name.
+However, we can select which property or attribute of the model we want the ID to be. To do this we must use the reserved word “key”. This declaration should be placed above the attribute that we want to be the ID. In this case we place it above "CategoryId":
+
+[Key]
+public Guid CategoryId{get;set;}
+
+To set a required attribute we must use the reserved word "required".
+
+To restrict the number of characters in an attribute we must use the "MaxLength()" instruction.
+
+To set foreign keys we must use the "ForeignKey("NameOfForeignKey")" statement.
+
+To establish that certain properties should not be created in the database we must use the "NotMapped" statement. This way, when mapping our context (with the models) to the database, all properties that are "NotMapped" will be ignored.
+
+In the next class we are going to generate our model within a database.
+
+
+Sources:
+https://learn.microsoft.com/en-us/ef/ef6/modeling/code-first/data-annotations
+
+https://stackoverflow.com/questions/5446316/code-first-vs-model-database-first
+
+
+------------------------------------------------------------------------------
+
+
 Extensions :
 
 https://marketplace.visualstudio.com/items?itemName=kreativ-software.csharpextensions
 
 https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp
-
