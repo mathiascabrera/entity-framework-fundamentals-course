@@ -387,6 +387,44 @@ https://hoppscotch.io/
 
 ---------------------------------------------------------------------------
 
+
+
+
+
+--------------------  Connected to SQL Server database   --------------------
+
+We have already connected Entity Framework to an in-memory database. This connection was successful. This means that the settings for the "Models" and for the "Entity Framework" are working correctly. Now let's connect Entity Framework to a real database. In this case we will use SQL SERVER.
+
+To do this we must perform the following configuration:
+
+builder.Services.AddSqlServer<CONTEXT>("Data Source=NAME-SERVER-LOCAL; Initial Catalog=NAME-DATABASE;user id= NAME-LOGIN-SQL;password=PASSWORD-SQL");
+
+In SQL SERVER, the authentication must be "SQL Server Authentication".
+
+If we have an error with the "/" character we simply have to duplicate it: "//".
+
+
+Once this configuration is done, we execute the "dotnet run" command from the VSCode console and open Postman to consume the same Endpoint again that we did in the last class. This Endpoint must return False since the database will not be created in memory but in SQL SERVER.
+
+After consuming the Endpoint, we open SQL MANAGEMENT, the server type must be “Database Engine” and the Authentication “SQL Server Authentication”. When we make the connection we can see that the database was successfully created with the tables and attributes that we created in C#.
+
+We can observe that the "Priority" attribute of the "Tasks" table in SQL SERVER takes it as INT. Remember that in C# we had declared this as ENUM. Each value inside the Priority enumeration in C# is an integer value starting from zero. For example, low would be 0, medium would be 1, and high would be 2. Entity Framework then takes these ENUM values ​​that we declared in C# and represents them as an integer (INT) value within the database. This is one of the magical things about Entity Framework and one of the reasons to use this .NET ORM.
+
+In this process we have added the database connection directly in the code. This is not a good practice because if we wanted to change this address we would have to go to the code and leaving this type of sensitive information inside the code is not good. Next class we will see how we can make this connection in the application configuration file "appsettings".
+
+SQL SERVER installation :
+https://www.youtube.com/watch?v=YOaC_TyOrdk&ab_channel=CódigosdeProgramación-MR
+
+The Connection Strings Reference:
+https://www.connectionstrings.com/
+
+Other Sources:
+https://dbeaver.io/
+
+
+-----------------------------------------------------------------------------
+
+
 Extensions :
 
 https://marketplace.visualstudio.com/items?itemName=kreativ-software.csharpextensions

@@ -4,9 +4,11 @@ using project_ef;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//entity framework configuration
-builder.Services.AddDbContext<TasksContext> (p => p.UseInMemoryDatabase("TaskDB"));
-
+//This setting only works for in-memory Entity Framework. Now we are going to comment on it since there could be some conflict between both configurations.
+//This is because we need a configuration for each context.
+//builder.Services.AddDbContext<TasksContext> (p => p.UseInMemoryDatabase("TaskDB"));
+builder.Services.AddSqlServer<TasksContext>("Data Source= SERVERNAME;Initial Catalog= NAMEDATABASE;user id=LOGINSQL;password=PASSWORDSQL;TrustServerCertificate=True");
+/* builder.Services.AddSqlServer<TasksContext>("Data Source= SERVERNAME; Initial Catalog= NAMEDATABASE;Trusted_Connection=True; Integrated Security=True;TrustServerCertificate=True"); */
 
 var app = builder.Build();
 

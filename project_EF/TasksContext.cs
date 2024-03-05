@@ -3,9 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using project_ef.Models;
 
 namespace project_ef;
-
-
-
 public class TasksContext: DbContext
 {
     /* The "DbSet" is a set of data from the "model" that we have previously created. Basically, this would represent what a table is within the context of the Entity Framework.  */
