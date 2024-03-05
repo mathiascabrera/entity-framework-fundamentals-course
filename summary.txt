@@ -425,6 +425,37 @@ https://dbeaver.io/
 -----------------------------------------------------------------------------
 
 
+
+
+
+--------------------  Adding connection to appsettings file   --------------------
+
+Everything we have learned so far also applies to Postgres SQL. To do this we must change some configurations and obviously change the Connection Strings that contain all the security and server name among other data necessary to make the connection to the database.
+
+In the last class we created Sting Connections within the code. If we were in a production environment it would be very difficult to modify these String Connections.
+
+In this class we will learn how we can add this connection to the "appsetting" file and this way our application will be configurable when we move to a production environment.
+
+
+https://www.connectionstrings.com/sql-server/
+
+
+Safe storage of app secrets in development in ASP.NET Core:
+https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows
+
+Fluent API:
+https://www.learnentityframeworkcore.com/configuration/fluent-api
+
+User Secrets en ASP.NET Core:
+https://medium.com/@rvazquezmiguel/user-secrets-en-asp-net-core-1796dc143506
+
+
+https://learn.microsoft.com/en-us/dotnet/csharp/
+
+
+--------------------------------------------------------------------------------------
+
+
 Extensions :
 
 https://marketplace.visualstudio.com/items?itemName=kreativ-software.csharpextensions
