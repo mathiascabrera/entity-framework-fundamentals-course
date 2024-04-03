@@ -456,6 +456,93 @@ https://learn.microsoft.com/en-us/dotnet/csharp/
 --------------------------------------------------------------------------------------
 
 
+USING FLUENT API
+
+
+--------------------  Introduction to Fluent API   --------------------
+
+In some complex cases the attributes will not be enough and we will need to do more complex things where we will have to go directly to the Entity Framework to perform this configuration.
+
+To avoid this, Entity Framework has another way to configure allowing us to have control of many advanced scenarios where attributes or "data annotations" are not supported.
+
+Fluent API is one of the most used techniques in Entity Framework to design our databases.
+
+Fluent API is an advanced way to configure Entity Framework Models without using attributes or "data annotations", allowing you to design the database considering advanced aspects.
+
+Nested extension functions are used to configure tables, columns, and specify data mapping.
+
+
+Source:
+https://learn.microsoft.com/es-es/ef/ef6/modeling/code-first/fluent/types-and-properties
+
+
+-----------------------------------------------------------------------
+
+
+
+
+
+--------------------  Creating Category model with Fluent API   --------------------
+
+Let's start seeing how Fluent API works with the "Category" model.
+
+The fluent API takes precedence over attributes or "data annotations."
+
+In this way we have used the Fluent API functions to replace the attributes or data annotations within our Model.
+
+
+
+
+Sources:
+
+
+https://learn.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key
+
+https://learn.microsoft.com/es-es/ef/ef6/modeling/code-first/fluent/relationships
+
+One-to-Many Relationships
+https://www.entityframeworktutorial.net/efcore/configure-one-to-many-relationship-using-fluent-api-in-ef-core.aspx
+
+One-to-One Relationships
+https://www.entityframeworktutorial.net/efcore/configure-one-to-one-relationship-using-fluent-api-in-ef-core.aspx
+
+Many-to-Many Relationships
+https://www.entityframeworktutorial.net/efcore/configure-many-to-many-relationship-in-ef-core.aspx
+
+
+------------------------------------------------------------------------------------
+
+
+
+
+
+--------------------  Creating Task model with Fluent API   --------------------
+
+In the next class we will see if the database is created correctly.
+
+
+------------------------------------------------------------------------------------
+
+
+
+
+
+--------------------  Connecting to the database with Fluent API   --------------------
+
+We have configured the two models using Fluent API.
+
+In the next class we will learn another functionality that Entity Framework has.
+It is very common to make changes to existing tables. How can we keep track of the modifications that are being made to the database?
+To do this, Entity Framework has a functionality called “Migrations”.
+Migrations will allow us to keep track of the modifications that were made to the database.
+
+------------------------------------------------------------------------------------
+
+
+
+
+
+
 Extensions :
 
 https://marketplace.visualstudio.com/items?itemName=kreativ-software.csharpextensions

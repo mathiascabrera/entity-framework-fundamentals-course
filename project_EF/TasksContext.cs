@@ -13,4 +13,29 @@ public class TasksContext: DbContext
     public TasksContext(DbContextOptions<TasksContext> options) :base(options){}
 
     /* It's that simple to create an Entity Framework configuration. */
+
+
+    //let's apply Fluent API
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Category>(category =>
+        {
+            category.ToTable("Categoria");//table name
+            category.HasKey(p=> p.CategoryId);
+            category.Property(p=> p.Name).IsRequired().HasMaxLength(150);
+            category.Property(p=> p.Description);
+        });
+
+        modelBuilder.Entity<project_ef.Models.Task>(task =>
+        {
+            task.ToTable("Tarea");
+            task.HasKey(p=> p.TaskId);
+            task.HasOne(p=> p.Category).WithMany(p=> p.Tasks).HasForeignKey(p=> p.CategoryId);
+            task.Property(p=> p.Title).IsRequired().HasMaxLength(200);
+            task.Property(p=> p.Description);
+            task.Property(p=> p.PriorityTask);
+            task.Property(p=> p.CreationDate);
+            task.Ignore(p=> p.Summary);
+        });
+    }
 } 
