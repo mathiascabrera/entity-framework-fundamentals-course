@@ -542,6 +542,115 @@ Migrations will allow us to keep track of the modifications that were made to th
 
 
 
+--------------------  What's the Migrations?   --------------------
+
+We managed to configure the "Task" and "Category" models using the Fluent API.
+
+It is normal to modify an already created database. How can we have a history of all the modifications made to the database?
+
+Migrations are a feature of Entity Framework that allows us to save all the changes made to the database. This allows us to know when one change depends on another since we have a sequence of changes made.
+
+Migrations allow us to build a version of the database, allowing us to know which database to work with at the code level. We will have a version of our code that will connect to a specific version of the database.
+
+To use it we must install a tool within the DOTNET CLI that will allow us to add a series of commands to manipulate the changes that are being made to the code.
+
+
+- To add a Migration : dotnet ef migrations add InitialCreate
+
+It will perform an analysis of all changes within the Fluent API or the Attributes, depending on the model we use. It will then generate a Script detailing the changes that were made.
+
+- dotnet ef database update
+Updates the database and forces all migrations to run.
+
+- dotnet ef database update
+
+
+
+In the next class we are going to implement Migrations and in turn we are going to make our first database script.
+
+- Sources:
+Migrations:
+	https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
+
+Temporal Tables:
+	https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver16
+
+
+------------------------------------------------------------------------------------
+
+
+
+
+
+--------------------  Initialize Migrations   --------------------
+
+In this class we are going to implement Migrations in our project.
+
+We go to VSCode and from the terminal we write "dotnet ef" to verify that we have the "dotnet ef" tool installed. If it is not installed we must search for it on Google. We enter the official Microsoft page where the following two links will appear:
+
+To install it globally on our computer :
+
+dotnet tool install --global dotnet-ef
+
+
+To update it:
+
+dotnet tool update --global dotnet-ef
+
+
+We copy the link to install it, paste it and run it in the VsCode console.
+
+With the "dotnet ef" command we can verify that the installation has been completed correctly.
+
+Let's create our first Migration!.
+
+This first Migration is usually called:
+"Init database" or "Initial Create"
+
+After the first Migration, each change we make will be given a name that describes the changes made.
+
+
+To start our Migration we will execute the command:
+"dotnet ef Migrations add InitialCreate"
+
+
+If we receive the following in response:
+Your startup project 'project_EF' doesn't reference Microsoft.EntityFrameworkCore.Design. This package is required for the Entity Framework Core Tools to work. Ensure your startup project is correct, install the package, and try again.
+We must install the package: "Microsoft.EntityFrameworkCore.Design" from NUGET.
+
+
+Once the Entity Design is installed, we execute the command again "dotnet ef Migrations add InitialCreate".
+
+Once we initialize the Migration, the “Migrations” folder will be created by default. In this folder there are different classes that contain the Entity Framework configurations that we have.
+
+Inside the file "TasksContextModelSnapshot.cs" we can see that it contains the current database configuration. It contains the same thing we have done with the Fluent API.
+
+The file "20240422224000_InitialCreate.cs" contains all the initial configuration of our database.
+
+Every time we create a Migration we will have an "Up" method and another "Down" method. The "Up" method is executed when the Migration is created or the database is executed. The “Down” method will allow us to reverse the changes we have made in said Migration. In this way the database would be in the version prior to the changes made.
+
+
+After creating our Migration, we must create our Database again. To do this we must first delete the one we had already created and create it again.
+
+Note: If we want to use Migrations in production, we should use it after we have finished the schema or base configuration of our database. And from now on use Migrations every time we make changes to the database. It is very difficult to use Migrations when our project is already in production and the data already exists within the database.
+
+
+As we said before, we must delete the database that we had already created. To do this we must open SQL Server and delete the corresponding database.
+
+Once the database is deleted, we execute the "dotnet ef Database update" command in the VSCode console.
+This command is the one we are going to execute every time we add a Migration. This command runs all the Migrations to create the different elements contained in the database. And if the database does not exist, it will create it.
+
+
+Once the command is executed, we open SQL Server and we can see that the database was created correctly.
+
+Unlike the previous database, a new table now appeared: "__EFMigrationsHistory". This table contains the different migrations, that is, the different changes that have been made. To see it we can right click on the table and select the option "Select the top 1000 rows" which will show us all the migrations.
+
+In the next class we are going to create a new Migration, in which we are going to make changes to the existing tables.
+
+
+
+https://davidcasr.medium.com/herramientas-de-testeo-de-apis-e376b2ffaa5f
+
 
 Extensions :
 
