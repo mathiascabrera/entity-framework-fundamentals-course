@@ -18,6 +18,7 @@ public class Task
     public string? Description {get;set;}
     public Priority PriorityTask {get;set;}
     public DateTime CreationDate {get;set;}
+    public DateTime TimeLimit {get;set;}
     
     //This property will help us when we need to obtain the Category belonging to a Task
     public virtual Category? Category {get;set;}

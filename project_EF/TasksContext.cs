@@ -24,6 +24,7 @@ public class TasksContext: DbContext
             category.HasKey(p=> p.CategoryId);
             category.Property(p=> p.Name).IsRequired().HasMaxLength(150);
             category.Property(p=> p.Description);
+            category.Property(p=> p.EffortLevel);
         });
 
         modelBuilder.Entity<project_ef.Models.Task>(task =>
@@ -35,6 +36,7 @@ public class TasksContext: DbContext
             task.Property(p=> p.Description);
             task.Property(p=> p.PriorityTask);
             task.Property(p=> p.CreationDate);
+            task.Property(p=> p.TimeLimit);
             task.Ignore(p=> p.Summary);
         });
     }

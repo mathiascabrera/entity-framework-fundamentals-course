@@ -648,6 +648,54 @@ Unlike the previous database, a new table now appeared: "__EFMigrationsHistory".
 In the next class we are going to create a new Migration, in which we are going to make changes to the existing tables.
 
 
+------------------------------------------------------------------------------------
+
+
+
+
+
+--------------------  Creating a Migration   --------------------
+
+In the previous class we have created our Migration using Entity Framework.
+
+We create the initial Migration that contains all the configuration of our Task and Category Models with their validations in Fluent API.
+
+In this class we are going to simulate that we must modify a database that has already been created and is in production. For which, we are going to add a new field in the Category table and then perform a Migration to track the changes made.
+
+We open our Visual Studio and add the "EffortLevel" field. Then we must open “TaskContext” and add the field.
+
+Finally we open the terminal and execute the command "dotnet ef migrations add message".
+Remember that the message must be descriptive of the changes made.
+
+Entity Framework will automatically detect changes made since the last migration.
+
+If we execute the command the new migration will be created. We can see that two new files will appear in the "Migrations" folder:
+
+20240517114601_ColumnEffortLevel.Designer.cs
+20240517114601_ColumnEffortLevel.cs
+
+The first 8 digits correspond to the date the migration was performed.
+
+An interesting detail is that these files are ordered from the first migration performed to the last.
+
+Once again, if we open these files we will see the two methods that we mentioned above. The Up and Down method. These help us go to the previous migration or return to the current one. The Up method creates the table, that is, it helps us return to the current migration, while the Down method deletes the table, taking us to the previous migration.
+
+So far we created the migration, but we haven't updated our database. To do this we must execute the “dotnet ef database update” command.
+
+If we open SQL Server we can see the modifications we have made.
+
+
+We will perform the same steps to add a new field in the Task table.
+
+
+In the next class we will see how we can add initial data to the database.
+
+So far we have only made modifications to the database schema, that is, adding tables and columns. But we can also add initial data in each of the tables. In this way we can carry out a migration that carries out the changes made to this data.
+
+Source:
+https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
+
+
 
 https://davidcasr.medium.com/herramientas-de-testeo-de-apis-e376b2ffaa5f
 
