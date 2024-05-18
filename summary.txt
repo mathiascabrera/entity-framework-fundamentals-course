@@ -696,6 +696,34 @@ Source:
 https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
 
 
+------------------------------------------------------------------------------------
+
+
+
+
+
+--------------------  Add seed data   --------------------
+
+In this class we are going to create records that will be automatically created in the database.
+
+We add records to Task and Category
+
+We use "GUID.Parse()" to convert a string representing a Guid. We can obtain the string through the following link:
+link:https://www.guidgenerator.com/
+
+The reason we don't use "Guid.NewGuid()" is that every time we update the database, the ID will be changed.
+
+Once the changes have been made, we execute the already known commands to add a new migration and then update the database.
+
+In the next class we are going to obtain, modify and delete data from Entity Framework.
+
+
+------------------------------------------------------------------------------------
+
+
+
+
+
 
 https://davidcasr.medium.com/herramientas-de-testeo-de-apis-e376b2ffaa5f
 
