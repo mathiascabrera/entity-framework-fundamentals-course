@@ -724,6 +724,24 @@ In the next class we are going to obtain, modify and delete data from Entity Fra
 
 
 
+--------------------  Getting data with EF   --------------------
+
+So far we have managed to design a database using Entity Framework. In turn, we have taken: the two alternatives, using "data annotations" and "fluent API". We also learned how to create Migrations.
+
+In this class we will learn how to obtain records from databases.
+
+In "Category.cs" we add [JsonIgnore] to the Tasks property so that it ignores this field when we get tasks with their respective categories. If we don't do this we enter an infinite loop.
+
+
+In the next class we will see how we can insert records into the database.
+
+
+------------------------------------------------------------------------------------
+
+
+
+
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio
 
 https://davidcasr.medium.com/herramientas-de-testeo-de-apis-e376b2ffaa5f
 

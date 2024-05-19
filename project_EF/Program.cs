@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using project_ef;
+using project_ef.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,5 +31,24 @@ app.MapGet("/dbconnection", async ([FromServices] TasksContext dbContext) =>
 //Now let's go to Postman and use our endpoint name "dbconnection" to verify that our API is working fine.
 
 //If Postman returns the message we inserted in the Ok() method and returns true, it means that Entity Framework took the models we created and created the in-memory database successfully. If so, it gives us the assurance that the Entity Framework is configured correctly, therefore we can connect to a real database.
+
+
+//This endpoint will return all tasks.
+app.MapGet("/api/tasks", async ([FromServices] TasksContext dbContext) =>
+{
+    return Results.Ok(dbContext.Tasks);
+});
+
+//This endpoint will return all low priority tasks.
+app.MapGet("/api/filteredtasks", async ([FromServices] TasksContext dbContext) =>
+{
+    return Results.Ok(dbContext.Tasks.Where(p=> p.PriorityTask == project_ef.Models.Priority.Low));
+});
+
+//This endpoint will return all low priority tasks with their corresponding category.
+app.MapGet("/api/tasks/category", async ([FromServices] TasksContext dbContext) =>
+{
+    return Results.Ok(dbContext.Tasks.Include(p => p.Category).Where(p=> p.PriorityTask == project_ef.Models.Priority.Low));
+});
 
 app.Run();
