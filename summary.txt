@@ -757,6 +757,31 @@ We can copy the Json of the result of having executed the Get method in another 
 
 
 
+
+
+--------------------  Updating data with Entity Framework   --------------------
+
+Let's learn how we can update existing data using Entity Framework.
+
+To update the data we use the Put method.
+
+The "Find" method searches for elements using primary keys.
+
+From the path we must pass the Id of the element we want to update. In our exercise the path is: /api/tasks/{id}
+
+Once the project is executed, we open Postman. We paste our Endpoint plus the id of the record that we want to update. We choose the Put method and enter Body/Raw/Json. In this case we can do what we did in the last class. We open a new window in Postman and execute a Get method to obtain data in Json. We copy the Json fragment that will be useful to us and paste it in the Put Json. Then we modify all the necessary data and run the Endpoint. Finally, to check the update we can execute the Get method.
+
+
+------------------------------------------------------------------------------------
+
+
+
+https://github.com/borisdj/EFCore.BulkExtensions
+
+https://learn.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlbulkcopy?view=netframework-4.8.1&viewFallbackFrom=dotnet-plat-ext-6.0&redirectedfrom=MSDN
+
+https://docs.automapper.org/en/stable/Getting-started.html
+
 https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio
 
 https://davidcasr.medium.com/herramientas-de-testeo-de-apis-e376b2ffaa5f
