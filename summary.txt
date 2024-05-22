@@ -776,6 +776,20 @@ Once the project is executed, we open Postman. We paste our Endpoint plus the id
 
 
 
+
+
+--------------------  Delete data with Entity Framework   --------------------
+
+Let's learn how we can delete existing records.
+
+To delete existing data we use the "delete" method.
+
+
+------------------------------------------------------------------------------------
+
+
+https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-7.0
+
 https://github.com/borisdj/EFCore.BulkExtensions
 
 https://learn.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlbulkcopy?view=netframework-4.8.1&viewFallbackFrom=dotnet-plat-ext-6.0&redirectedfrom=MSDN
