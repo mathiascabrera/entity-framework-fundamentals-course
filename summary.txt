@@ -741,6 +741,22 @@ In the next class we will see how we can insert records into the database.
 
 
 
+
+--------------------  Save data with Entity Framework   --------------------
+
+To add data to the database we must use "POST".
+
+Once the project has been executed we must open "Postman" and copy the url with the Endpoint. Then selecting the action in "POST", we enter the "body", "raw" and options in "Json".
+
+Once the data that we want to add to the database has been loaded, we click on "Send".
+
+We can copy the Json of the result of having executed the Get method in another window.
+
+
+------------------------------------------------------------------------------------
+
+
+
 https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio
 
 https://davidcasr.medium.com/herramientas-de-testeo-de-apis-e376b2ffaa5f

@@ -1,3 +1,4 @@
+using System.Formats.Tar;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using project_ef;
@@ -49,6 +50,19 @@ app.MapGet("/api/filteredtasks", async ([FromServices] TasksContext dbContext) =
 app.MapGet("/api/tasks/category", async ([FromServices] TasksContext dbContext) =>
 {
     return Results.Ok(dbContext.Tasks.Include(p => p.Category).Where(p=> p.PriorityTask == project_ef.Models.Priority.Low));
+});
+
+//This endpoint is responsible for loading records into the database.
+app.MapPost("/api/tasks", async ([FromServices] TasksContext dbContext, [FromBody] project_ef.Models.Task task) =>
+{
+    /* each of these fields is overwritten with the data received */
+    task.TaskId = Guid.NewGuid();
+    task.CreationDate = DateTime.Now;
+    /* await dbContext.AddAsync(task); */ /* Both ways of adding are valid. */
+    await dbContext.Tasks.AddAsync(task);
+    await dbContext.SaveChangesAsync();/* In this way we confirm that the record was saved. */
+    return Results.Ok();
+
 });
 
 app.Run();
